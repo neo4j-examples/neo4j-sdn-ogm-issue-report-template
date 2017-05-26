@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>sdn-4.2-embedded</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
+
+    <name>Spring Data Neo4j 4.2 Test Case Template</name>
+    <description>Use this template to report bugs with Spring Data Neo4j (SDN) using the OGM</description>
+
+    <parent>
+        <groupId>org.neo4j.ogm.testcasetemplate</groupId>
+        <artifactId>testcasetemplate</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+
+    <properties>
+
+        <!-- change with your versions here -->
+        <spring-data-releasetrain.version>Ingalls-SR3</spring-data-releasetrain.version>
+        <neo4j-ogm.version>2.1.2</neo4j-ogm.version>
+        <spring.version>4.3.7.RELEASE</spring.version>
+
+        <!-- only change these if you want to override the defaults coming from the release train -->
+        <!--<spring-data-neo4j.version>4.2.0.BUILD-SNAPSHOT</spring-data-neo4j.version>-->
+
+        <!-- if overriding the driver version, also uncomment the driver dependency below -->
+        <!--<neo4j-java-driver.version>1.2.2</neo4j-java-driver.version>-->
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.data</groupId>
+                <artifactId>spring-data-releasetrain</artifactId>
+                <version>${spring-data-releasetrain.version}</version>
+                <scope>import</scope>
+                <type>pom</type>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <dependencies>
+        <!--<dependency>-->
+        <!--<groupId>org.neo4j.driver</groupId>-->
+        <!--<artifactId>neo4j-java-driver</artifactId>-->
+        <!--<version>${neo4j-java-driver.version}</version>-->
+        <!--</dependency>-->
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-neo4j</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.neo4j</groupId>
+            <artifactId>neo4j-ogm</artifactId>
+            <version>2.0.2</version>
+            <type>pom</type>
+        </dependency>
+        <!--<dependency>
+            <groupId>org.neo4j</groupId>
+            <artifactId>neo4j-ogm-core</artifactId>
+            <version>${neo4j-ogm.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.neo4j</groupId>
+            <artifactId>neo4j-ogm-http-driver</artifactId>
+            <version>${neo4j-ogm.version}</version>
+            <scope>runtime</scope>
+        </dependency>-->
+
+        <dependency>
+            <groupId>org.neo4j</groupId>
+            <artifactId>neo4j</artifactId>
+            <version>3.1.4</version>
+        </dependency>
+        <dependency>
+            <groupId>org.neo4j.procedure</groupId>
+            <artifactId>apoc</artifactId>
+            <version>3.1.2.5</version>
+        </dependency>
+        <dependency>
+            <groupId>org.neo4j</groupId>
+            <artifactId>neo4j-ogm-test</artifactId>
+            <version>${neo4j-ogm.version}</version>
+            <scope>test</scope>
+            <exclusions> <!-- necessary to get logs in tests -->
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-nop</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>${spring.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+    </dependencies>
+
+</project>
