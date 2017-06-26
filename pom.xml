@@ -78,4 +78,7 @@
         </plugins>
     </build>
 
+    <modules>
+        <module>so-44746742</module>
+    </modules>
 </project>
