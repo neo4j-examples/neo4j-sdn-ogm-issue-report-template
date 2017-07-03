@@ -78,4 +78,7 @@
         </plugins>
     </build>
 
+    <modules>
+        <module>issue-380</module>
+    </modules>
 </project>
