@@ -78,4 +78,8 @@
         </plugins>
     </build>
 
+    <modules>
+        <module>ogm-3.x</module>
+    </modules>
+
 </project>
