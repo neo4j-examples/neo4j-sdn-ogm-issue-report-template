@@ -79,7 +79,15 @@
     </build>
 
     <modules>
-        <module>ogm-3.x</module>
+        <module>ogm-2.x</module>
+        <module>ogm-3.0</module>
+
+        <module>boot-1.4</module>
+        <module>boot-1.5</module>
+
+        <module>sdn-4.1</module>
+        <module>sdn-4.2</module>
+        <module>sdn-5.0</module>
     </modules>
 
 </project>
