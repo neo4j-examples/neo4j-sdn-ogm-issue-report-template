@@ -20,9 +20,9 @@
     <properties>
 
         <!-- change with your versions here -->
-        <spring-data-releasetrain.version>Kay-M2</spring-data-releasetrain.version>
-        <neo4j-ogm.version>3.0.0-SNAPSHOT</neo4j-ogm.version>
-        <spring.version>5.0.0.M5</spring.version>
+        <spring-data-releasetrain.version>Kay-M4</spring-data-releasetrain.version>
+        <neo4j-ogm.version>3.0.0-RC1</neo4j-ogm.version>
+        <spring.version>5.0.0.RC1</spring.version>
 
         <!-- only change these if you want to override the defaults coming from the release train -->
         <!--<spring-data-neo4j.version>5.0.0.BUILD-SNAPSHOT</spring-data-neo4j.version>-->
