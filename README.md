@@ -97,7 +97,7 @@ git commit -m "Add repro project for DATAGRAPH-123"
 git push
 ```
 
-5\. [Send a pull request from the Github web interface](http://help.github.com/send-pull-requests/)
+5\. [Send a pull request from the Github web interface](https://help.github.com/articles/creating-a-pull-request)
 
 * The SDN team will be notified and will look at your request
 
