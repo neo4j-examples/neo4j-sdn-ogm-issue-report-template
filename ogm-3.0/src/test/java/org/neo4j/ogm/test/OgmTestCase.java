@@ -1,15 +1,15 @@
 package org.neo4j.ogm.test;
 
-import java.io.File;
-import java.util.Collection;
-
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.neo4j.harness.junit.Neo4jRule;
+import org.neo4j.ogm.config.Configuration;
 import org.neo4j.ogm.session.Session;
 import org.neo4j.ogm.session.SessionFactory;
 import org.neo4j.ogm.test.domain.User;
+
+import java.util.Collection;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -22,10 +22,10 @@ public class OgmTestCase {
     @Before
     public void setUp() throws Exception {
 
-        org.neo4j.ogm.config.Configuration configuration = new org.neo4j.ogm.config.Configuration.Builder()
+        Configuration configuration = new Configuration.Builder()
             .uri(neoServer.boltURI().toString())
-            //.uri(neoServer.httpURI().toString())
-            //.uri(new File("target/graph.db").toURI().toString())
+            //.uri(neoServer.httpURI().toString()) // For HTTP
+            //.uri(new File("target/graph.db").toURI().toString()) // For Embedded
             .build();
 
         SessionFactory sessionFactory = new SessionFactory(configuration, User.class.getPackage().getName());
