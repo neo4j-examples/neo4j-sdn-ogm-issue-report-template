@@ -7,7 +7,7 @@
     <version>1.0.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>Neo4j OGM 2.x Test Case Template</name>
+    <name>Neo4j OGM 3.x Test Case Template</name>
     <description>Use this template to report bugs with Neo4j OGM</description>
 
     <parent>
@@ -20,7 +20,7 @@
     <properties>
 
         <!-- change with your versions here -->
-        <neo4j-ogm.version>3.0.0-RC1</neo4j-ogm.version>
+        <neo4j-ogm.version>3.0.0</neo4j-ogm.version>
 
         <!-- if overriding the driver version, also uncomment the driver dependency below -->
         <!--<neo4j-java-driver.version>1.2.2</neo4j-java-driver.version>-->
