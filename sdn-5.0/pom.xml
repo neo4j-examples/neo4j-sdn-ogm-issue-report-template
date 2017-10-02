@@ -20,15 +20,15 @@
     <properties>
 
         <!-- change with your versions here -->
-        <spring-data-releasetrain.version>Kay-M4</spring-data-releasetrain.version>
-        <neo4j-ogm.version>3.0.0-RC1</neo4j-ogm.version>
-        <spring.version>5.0.0.RC1</spring.version>
+        <spring-data-releasetrain.version>Kay-RELEASE</spring-data-releasetrain.version>
+        <neo4j-ogm.version>3.0.0</neo4j-ogm.version>
+        <spring.version>5.0.0.RELEASE</spring.version>
 
         <!-- only change these if you want to override the defaults coming from the release train -->
-        <!--<spring-data-neo4j.version>5.0.0.BUILD-SNAPSHOT</spring-data-neo4j.version>-->
+        <!--<spring-data-neo4j.version>5.1.0-SNAPSHOT</spring-data-neo4j.version>-->
 
         <!-- if overriding the driver version, also uncomment the driver dependency below -->
-        <!--<neo4j-java-driver.version>1.3.0-rc1</neo4j-java-driver.version>-->
+        <!--<neo4j-java-driver.version>1.5.0</neo4j-java-driver.version>-->
     </properties>
 
     <dependencyManagement>
@@ -53,21 +53,21 @@
             <groupId>org.springframework.data</groupId>
             <artifactId>spring-data-neo4j</artifactId>
         </dependency>
+        <!--<dependency>-->
+            <!--<groupId>org.neo4j</groupId>-->
+            <!--<artifactId>neo4j-ogm-core</artifactId>-->
+            <!--<version>${neo4j-ogm.version}</version>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+            <!--<groupId>org.neo4j</groupId>-->
+            <!--<artifactId>neo4j-ogm-http-driver</artifactId>-->
+            <!--<version>${neo4j-ogm.version}</version>-->
+            <!--<scope>runtime</scope>-->
+        <!--</dependency>-->
         <dependency>
-            <groupId>org.neo4j</groupId>
-            <artifactId>neo4j-ogm-core</artifactId>
-            <version>${neo4j-ogm.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.neo4j</groupId>
-            <artifactId>neo4j-ogm-http-driver</artifactId>
-            <version>${neo4j-ogm.version}</version>
-            <scope>runtime</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.neo4j</groupId>
-            <artifactId>neo4j-ogm-test</artifactId>
-            <version>${neo4j-ogm.version}</version>
+            <groupId>org.neo4j.test</groupId>
+            <artifactId>neo4j-harness</artifactId>
+            <version>3.2.5</version>
             <scope>test</scope>
         </dependency>
         <dependency>
