@@ -82,6 +82,13 @@ cd neo4j-ogm-bug-test-case-template
 ./create-repro-project.sh boot-1.4 DATAGRAPH-123
 ```
 
+For [SDN with Spring Boot 2.0](https://github.com/neo4j-examples/neo4j-sdn-ogm-issue-report-template/tree/master/boot-2.0) issues:
+
+```bash
+cd neo4j-ogm-bug-test-case-template
+./create-repro-project.sh boot-2.0 DATAGRAPH-123
+```
+
 2\. Review the list of dependencies and version numbers and modify the pom.xml as necessary.
 
 3\. Import the project into your IDE and modify it as necessary to reproduce your issue.
