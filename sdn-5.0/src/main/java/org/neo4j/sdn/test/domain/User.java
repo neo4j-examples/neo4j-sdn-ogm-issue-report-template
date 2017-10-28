@@ -1,15 +1,15 @@
 package org.neo4j.sdn.test.domain;
 
-import org.neo4j.ogm.annotation.GraphId;
-import org.neo4j.ogm.annotation.Index;
-import org.neo4j.ogm.annotation.NodeEntity;
+import org.neo4j.ogm.annotation.*;
 
 @NodeEntity
 public class User {
 
-    @GraphId
+    @Id
+    @GeneratedValue
     private Long id;
 
+    @Property(name = "firstName")
     private String firstName;
 
     private String lastName;
