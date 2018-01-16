@@ -20,10 +20,10 @@
     <properties>
 
         <!-- change with your versions here -->
-        <neo4j-ogm.version>3.0.0</neo4j-ogm.version>
+        <neo4j-ogm.version>3.0.2</neo4j-ogm.version>
 
         <!-- if overriding the driver version, also uncomment the driver dependency below -->
-        <!--<neo4j-java-driver.version>1.2.2</neo4j-java-driver.version>-->
+        <!--<neo4j-java-driver.version>1.4.5</neo4j-java-driver.version>-->
     </properties>
 
     <dependencies>
@@ -55,6 +55,11 @@
                 </exclusion>
             </exclusions>
         </dependency>
+        <!--<dependency>-->
+            <!--<groupId>org.neo4j.driver</groupId>-->
+            <!--<artifactId>neo4j-java-driver</artifactId>-->
+            <!--<version>${neo4j-java-driver.version}</version>-->
+        <!--</dependency>-->
 
     </dependencies>
 
