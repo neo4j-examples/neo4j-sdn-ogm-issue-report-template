@@ -1,22 +1,21 @@
 package org.neo4j.boot.test.domain;
 
 import org.neo4j.ogm.annotation.GraphId;
+import org.neo4j.ogm.annotation.Id;
 import org.neo4j.ogm.annotation.NodeEntity;
 
 @NodeEntity
 public class User {
 
-    @GraphId
-    private Long id;
-
     private String firstName;
 
     private String lastName;
 
+    @Id
     private String email;
 
     public User() {
-        // required by
+        // required by jackson and OGM version < 3.1
     }
 
     public User(String email, String firstName, String lastName) {
