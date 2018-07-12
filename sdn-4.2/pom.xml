@@ -20,9 +20,9 @@
     <properties>
 
         <!-- change with your versions here -->
-        <spring-data-releasetrain.version>Ingalls-SR9</spring-data-releasetrain.version>
-        <neo4j-ogm.version>2.1.5</neo4j-ogm.version>
-        <spring.version>4.3.7.RELEASE</spring.version>
+        <spring-data-releasetrain.version>Ingalls-SR13</spring-data-releasetrain.version>
+        <neo4j-ogm.version>2.1.6</neo4j-ogm.version>
+        <spring.version>4.3.18.RELEASE</spring.version>
 
         <!-- only change these if you want to override the defaults coming from the release train -->
         <!--<spring-data-neo4j.version>4.2.0.BUILD-SNAPSHOT</spring-data-neo4j.version>-->

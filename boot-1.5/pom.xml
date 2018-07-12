@@ -14,15 +14,15 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>1.5.7.RELEASE</version>
+		<version>1.5.14.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>1.8</java.version>
-        <spring-data-releasetrain.version>Ingalls-SR9</spring-data-releasetrain.version>
-        <neo4j-ogm.version>2.1.5</neo4j-ogm.version>
+        <spring-data-releasetrain.version>Ingalls-SR13</spring-data-releasetrain.version>
+        <neo4j-ogm.version>2.1.6</neo4j-ogm.version>
     </properties>
 
     <dependencyManagement>

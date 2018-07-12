@@ -52,13 +52,13 @@ public class SdnTestCase {
     static class Config {
 
         @Bean
-        public SessionFactory getSessionFactory() {
+        public SessionFactory sessionFactory() {
             return new SessionFactory(configuration(), User.class.getPackage().getName());
         }
 
         @Bean
         public Neo4jTransactionManager transactionManager() throws Exception {
-            return new Neo4jTransactionManager(getSessionFactory());
+            return new Neo4jTransactionManager(sessionFactory());
         }
 
         @Bean
