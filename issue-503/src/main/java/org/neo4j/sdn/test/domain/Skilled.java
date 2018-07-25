@@ -32,8 +32,7 @@ public class Skilled {
     public Skilled() {
     }
 
-    public Skilled(Long id, Long since, User user, Skill skill) {
-        this.id = id;
+    public Skilled(Long since, User user, Skill skill) {
         this.since = since;
         this.user = user;
         this.skill = skill;

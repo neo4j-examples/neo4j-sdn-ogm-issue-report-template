@@ -1,5 +1,13 @@
 package org.neo4j.sdn.test;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.Assert.*;
+
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Date;
+
+import org.junit.After;
 import org.junit.ClassRule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -7,6 +15,7 @@ import org.neo4j.harness.junit.Neo4jRule;
 import org.neo4j.ogm.session.Session;
 import org.neo4j.ogm.session.SessionFactory;
 import org.neo4j.sdn.test.domain.Skill;
+import org.neo4j.sdn.test.domain.Skilled;
 import org.neo4j.sdn.test.domain.User;
 import org.neo4j.sdn.test.repository.UserRepository;
 import org.neo4j.sdn.test.service.UserService;
@@ -19,12 +28,6 @@ import org.springframework.data.neo4j.transaction.Neo4jTransactionManager;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
-
-import java.util.Collection;
-import java.util.Collections;
-
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.Assert.assertEquals;
 
 @RunWith(SpringRunner.class)
 @ContextConfiguration(classes = SdnTestCase.Config.class)
@@ -40,33 +43,36 @@ public class SdnTestCase {
     @Autowired
     private SessionFactory sessionFactory;
 
+    @After
+    public void cleanup() {
+        sessionFactory.openSession().purgeDatabase();
+    }
 
     @Test
-    public  void okWithSession() {
-        User relationship = new User("another@nowhere.com", "Another", "One", Collections.EMPTY_LIST);
-        Skill skill = new Skill("None");
-        User user = new User("noone@nowhere.com", "No", "One", Collections.singletonList(skill));
+    public void okWithSession() {
+        createTestUser();
 
         Session session = sessionFactory.openSession();
-        session.save(user);
         Collection<User> users = session.loadAll(User.class);
         assertThat(users.iterator().next().getRelationships()).isNotNull();
     }
 
     @Test
-    public  void failWithRepository() {
-        User relationship = new User("another@nowhere.com", "Another", "One", Collections.EMPTY_LIST);
+    public void failWithRepository() {
+        createTestUser();
+
+        assertThat(userService.findAllUsers()).hasSize(1);
+        assertThat(userService.findAllUsers().iterator().next().getRelationships()).isNotNull();
+    }
+
+    private void createTestUser() {
+        User user = new User("noone@nowhere.com", "No", "One");
         Skill skill = new Skill("None");
-        User user = new User("noone@nowhere.com", "No", "One", Collections.singletonList(skill));
+        user.addSkill(skill);
 
         Session session = sessionFactory.openSession();
         session.save(user);
-        assertThat(userService.findAllUsers()).hasSize(1);
-        assertThat(userService.findAllUsers().iterator().next().getRelationships()).isNotNull();
-        assertEquals(skill, userService.findAllUsers().iterator().next().getRelationships().get(0));
     }
-
-
 
     @Configuration
     @EnableNeo4jRepositories(basePackageClasses = UserRepository.class)

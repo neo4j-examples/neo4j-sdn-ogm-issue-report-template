@@ -1,13 +1,15 @@
 package org.neo4j.sdn.test.domain;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
 import org.neo4j.ogm.annotation.GeneratedValue;
 import org.neo4j.ogm.annotation.Id;
 import org.neo4j.ogm.annotation.Index;
 import org.neo4j.ogm.annotation.NodeEntity;
 import org.neo4j.ogm.annotation.Property;
 import org.neo4j.ogm.annotation.Relationship;
-
-import java.util.List;
 
 @NodeEntity
 public class User {
@@ -26,15 +28,14 @@ public class User {
     private String email;
 
     @Relationship(type = "HAS_SKILL")
-    private List<Skill> relationships;
+    private List<Skilled> relationships;
 
     public User() {}
 
-    public User(String email, String firstName, String lastName, List<Skill> relationships) {
+    public User(String email, String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
-        this.relationships = relationships;
     }
 
     public String getFirstName() {
@@ -49,7 +50,15 @@ public class User {
         return email;
     }
 
-    public List<Skill> getRelationships() {
+    public List<Skilled> getRelationships() {
         return relationships;
+    }
+
+    public void addSkill(Skill skill) {
+        if (relationships == null) {
+            relationships = new ArrayList<>();
+        }
+
+        relationships.add(new Skilled(new Date().getTime(), this, skill));
     }
 }
