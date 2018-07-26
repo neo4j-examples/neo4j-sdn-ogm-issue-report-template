@@ -1,25 +1,15 @@
 package org.neo4j.sdn.test;
 
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.Assert.*;
-
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Date;
-
 import org.junit.After;
 import org.junit.Before;
-
 import org.junit.ClassRule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.neo4j.harness.junit.Neo4jRule;
 import org.neo4j.ogm.session.Session;
 import org.neo4j.ogm.session.SessionFactory;
-import org.neo4j.ogm.transaction.Transaction;
 import org.neo4j.sdn.test.domain.Skill;
-import org.neo4j.sdn.test.domain.Skilled;
 import org.neo4j.sdn.test.domain.User;
 import org.neo4j.sdn.test.repository.UserRepository;
 import org.neo4j.sdn.test.service.UserService;
@@ -32,7 +22,10 @@ import org.springframework.data.neo4j.transaction.Neo4jTransactionManager;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
-import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Collection;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(SpringRunner.class)
 @ContextConfiguration(classes = SdnTestCase.Config.class)
@@ -48,11 +41,18 @@ public class SdnTestCase {
     @Autowired
     private SessionFactory sessionFactory;
 
+    private Session session;
+
+    @Before
+    public void setUp() {
+        session = sessionFactory.openSession();
+    }
+
     @After
     public void cleanup() {
         sessionFactory.openSession().purgeDatabase();
     }
-
+    
     @Test
     public void okWithSession() {
         createTestUser();
@@ -96,9 +96,6 @@ public class SdnTestCase {
             return new org.neo4j.ogm.config.Configuration.Builder()
                     .uri(neoServer.boltURI().toString())
                     .build();
-// use this for HTTP driver
-//                    .uri(neoServer.httpURI().toString())
-//                    .build();
         }
     }
 }
