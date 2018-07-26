@@ -1,12 +1,16 @@
 package org.neo4j.sdn.test;
 
+import org.junit.After;
+import org.junit.Before;
 import org.junit.ClassRule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.neo4j.harness.junit.Neo4jRule;
 import org.neo4j.ogm.session.Session;
 import org.neo4j.ogm.session.SessionFactory;
+import org.neo4j.ogm.transaction.Transaction;
 import org.neo4j.sdn.test.domain.Skill;
+import org.neo4j.sdn.test.domain.Skilled;
 import org.neo4j.sdn.test.domain.User;
 import org.neo4j.sdn.test.repository.UserRepository;
 import org.neo4j.sdn.test.service.UserService;
@@ -19,6 +23,7 @@ import org.springframework.data.neo4j.transaction.Neo4jTransactionManager;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -40,14 +45,26 @@ public class SdnTestCase {
     @Autowired
     private SessionFactory sessionFactory;
 
+    private Session session;
+
+    @Before
+    public void setUp() throws Exception {
+        session = sessionFactory.openSession();
+    }
+
+    @After
+    public void tearDown() throws Exception {
+        session.purgeDatabase();
+    }
 
     @Test
     public  void okWithSession() {
-        User relationship = new User("another@nowhere.com", "Another", "One", Collections.EMPTY_LIST);
         Skill skill = new Skill("None");
-        User user = new User("noone@nowhere.com", "No", "One", Collections.singletonList(skill));
+        User user = new User("noone@nowhere.com", "No", "One", Collections.emptyList());
+        Skilled relationship = new Skilled(null, 2018L, user, skill);
+        user.setRelationships(Collections.singletonList(relationship));
 
-        Session session = sessionFactory.openSession();
+
         session.save(user);
         Collection<User> users = session.loadAll(User.class);
         assertThat(users.iterator().next().getRelationships()).isNotNull();
@@ -55,15 +72,17 @@ public class SdnTestCase {
 
     @Test
     public  void failWithRepository() {
-        User relationship = new User("another@nowhere.com", "Another", "One", Collections.EMPTY_LIST);
         Skill skill = new Skill("None");
-        User user = new User("noone@nowhere.com", "No", "One", Collections.singletonList(skill));
+        User user = new User("noone@nowhere.com", "No", "One", Collections.emptyList());
+        Skilled relationship = new Skilled(null, 2018L, user, skill);
+        user.setRelationships(Collections.singletonList(relationship));
 
         Session session = sessionFactory.openSession();
         session.save(user);
         assertThat(userService.findAllUsers()).hasSize(1);
         assertThat(userService.findAllUsers().iterator().next().getRelationships()).isNotNull();
-        assertEquals(skill, userService.findAllUsers().iterator().next().getRelationships().get(0));
+        assertEquals(relationship, userService.findAllUsers().iterator().next().getRelationships().get(0));
+        session.purgeDatabase();
     }
 
 
@@ -86,7 +105,6 @@ public class SdnTestCase {
         @Bean
         public org.neo4j.ogm.config.Configuration configuration() {
             return new org.neo4j.ogm.config.Configuration.Builder()
-  //              .uri("bolt://127.0.0.1").credentials("neo4j", "password")
                     .uri(neoServer.boltURI().toString())
                     .build();
 // use this for HTTP driver

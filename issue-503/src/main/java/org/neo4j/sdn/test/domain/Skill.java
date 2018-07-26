@@ -28,7 +28,7 @@ public class Skill {
     String name;
 
     @Relationship(type = "HAS_SKILL", direction = INCOMING)
-    List<User> skilled;
+    List<Skilled> skilled;
 
     public Skill(String name) {
         this.name = name;
@@ -40,7 +40,7 @@ public class Skill {
         return name;
     }
 
-    public List<User> getSkilled() {
+    public List<Skilled> getSkilled() {
         return skilled;
     }
 

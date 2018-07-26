@@ -26,11 +26,11 @@ public class User {
     private String email;
 
     @Relationship(type = "HAS_SKILL")
-    private List<Skill> relationships;
+    private List<Skilled> relationships;
 
     public User() {}
 
-    public User(String email, String firstName, String lastName, List<Skill> relationships) {
+    public User(String email, String firstName, String lastName, List<Skilled> relationships) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -49,7 +49,12 @@ public class User {
         return email;
     }
 
-    public List<Skill> getRelationships() {
+    public List<Skilled> getRelationships() {
         return relationships;
+    }
+
+    public User setRelationships(List<Skilled> relationships) {
+        this.relationships = relationships;
+        return this;
     }
 }
