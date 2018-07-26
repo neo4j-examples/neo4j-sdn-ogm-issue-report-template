@@ -1,7 +1,16 @@
 package org.neo4j.sdn.test;
 
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.Assert.*;
+
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Date;
+
 import org.junit.After;
 import org.junit.Before;
+
 import org.junit.ClassRule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -25,12 +34,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Collection;
-import java.util.Collections;
-
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.Assert.assertEquals;
-
 @RunWith(SpringRunner.class)
 @ContextConfiguration(classes = SdnTestCase.Config.class)
 @EnableTransactionManagement
@@ -45,47 +48,33 @@ public class SdnTestCase {
     @Autowired
     private SessionFactory sessionFactory;
 
-    private Session session;
-
-    @Before
-    public void setUp() throws Exception {
-        session = sessionFactory.openSession();
-    }
-
     @After
-    public void tearDown() throws Exception {
-        session.purgeDatabase();
+    public void cleanup() {
+        sessionFactory.openSession().purgeDatabase();
     }
 
     @Test
-    public  void okWithSession() {
-        Skill skill = new Skill("None");
-        User user = new User("noone@nowhere.com", "No", "One", Collections.emptyList());
-        Skilled relationship = new Skilled(null, 2018L, user, skill);
-        user.setRelationships(Collections.singletonList(relationship));
-
-
-        session.save(user);
+    public void okWithSession() {
+        createTestUser();
         Collection<User> users = session.loadAll(User.class);
         assertThat(users.iterator().next().getRelationships()).isNotNull();
     }
 
     @Test
-    public  void failWithRepository() {
+    public void failWithRepository() {
+        createTestUser();
+        assertThat(userService.findAllUsers()).hasSize(1);
+        assertThat(userService.findAllUsers().iterator().next().getRelationships()).isNotNull();
+    }
+
+    private void createTestUser() {
+        User user = new User("noone@nowhere.com", "No", "One");
         Skill skill = new Skill("None");
-        User user = new User("noone@nowhere.com", "No", "One", Collections.emptyList());
-        Skilled relationship = new Skilled(null, 2018L, user, skill);
-        user.setRelationships(Collections.singletonList(relationship));
+        user.addSkill(skill);
 
         Session session = sessionFactory.openSession();
         session.save(user);
-        assertThat(userService.findAllUsers()).hasSize(1);
-        assertThat(userService.findAllUsers().iterator().next().getRelationships()).isNotNull();
-        assertEquals(relationship, userService.findAllUsers().iterator().next().getRelationships().get(0));
-        session.purgeDatabase();
     }
-
-
 
     @Configuration
     @EnableNeo4jRepositories(basePackageClasses = UserRepository.class)
