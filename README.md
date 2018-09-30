@@ -43,42 +43,42 @@ For the purpose of these instructions, we'll assume your new JIRA issue ID is "D
 For [SDN 5.x](https://github.com/neo4j-examples/neo4j-sdn-ogm-issue-report-template/tree/master/sdn-5.x) issues:
 
 ```bash
-cd neo4j-ogm-bug-test-case-template
+cd neo4j-sdn-ogm-issue-report-template
 ./create-repro-project.sh sdn-5.x DATAGRAPH-123
 ```
 
 For [SDN 4.2](https://github.com/neo4j-examples/neo4j-sdn-ogm-issue-report-template/tree/master/sdn-4.2) issues:
 
 ```bash
-cd neo4j-ogm-bug-test-case-template
+cd neo4j-sdn-ogm-issue-report-template
 ./create-repro-project.sh sdn-4.2 DATAGRAPH-123
 ```
 
 For [SDN 4.1](https://github.com/neo4j-examples/neo4j-sdn-ogm-issue-report-template/tree/master/sdn-4.1) issues:
 
 ```bash
-cd neo4j-ogm-bug-test-case-template
+cd neo4j-sdn-ogm-issue-report-template
 ./create-repro-project.sh sdn-4.1 DATAGRAPH-123
 ```
 
 For [OGM 2.x](https://github.com/neo4j-examples/neo4j-sdn-ogm-issue-report-template/tree/master/ogm-2.x) issues:
 
 ```bash
-cd neo4j-ogm-bug-test-case-template
+cd neo4j-sdn-ogm-issue-report-template
 ./create-repro-project.sh ogm-2.x issue-123
 ```
 
 For [SDN with Spring Boot 1.5](https://github.com/neo4j-examples/neo4j-sdn-ogm-issue-report-template/tree/master/boot-1.5) issues:
 
 ```bash
-cd neo4j-ogm-bug-test-case-template
+cd neo4j-sdn-ogm-issue-report-template
 ./create-repro-project.sh boot-1.5 DATAGRAPH-123
 ```
 
 For [SDN with Spring Boot 1.4](https://github.com/neo4j-examples/neo4j-sdn-ogm-issue-report-template/tree/master/boot-1.4) issues:
 
 ```bash
-cd neo4j-ogm-bug-test-case-template
+cd neo4j-sdn-ogm-issue-report-template
 ./create-repro-project.sh boot-1.4 DATAGRAPH-123
 ```
 
@@ -104,7 +104,7 @@ git commit -m "Add repro project for DATAGRAPH-123"
 git push
 ```
 
-5\. [Send a pull request from the Github web interface](http://help.github.com/send-pull-requests/)
+5\. [Send a pull request from the Github web interface](https://help.github.com/articles/creating-a-pull-request)
 
 * The SDN team will be notified and will look at your request
 

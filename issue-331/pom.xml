@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>issue-331</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
+
+    <name>Neo4j OGM 2.x Test Case Template</name>
+    <description>Use this template to report bugs with Neo4j OGM</description>
+
+    <parent>
+        <groupId>org.neo4j.ogm.testcasetemplate</groupId>
+        <artifactId>testcasetemplate</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+
+    <properties>
+
+        <!-- change with your versions here -->
+        <neo4j-ogm.version>2.1.1</neo4j-ogm.version>
+
+        <!-- if overriding the driver version, also uncomment the driver dependency below -->
+        <!--<neo4j-java-driver.version>1.2.2</neo4j-java-driver.version>-->
+    </properties>
+
+    <dependencies>
+        <!--<dependency>-->
+        <!--<groupId>org.neo4j.driver</groupId>-->
+        <!--<artifactId>neo4j-java-driver</artifactId>-->
+        <!--<version>${neo4j-java-driver.version}</version>-->
+        <!--</dependency>-->
+        <dependency>
+            <groupId>org.neo4j</groupId>
+            <artifactId>neo4j-ogm-core</artifactId>
+            <version>${neo4j-ogm.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.neo4j</groupId>
+            <artifactId>neo4j-ogm-http-driver</artifactId>
+            <version>${neo4j-ogm.version}</version>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.neo4j</groupId>
+            <artifactId>neo4j-ogm-test</artifactId>
+            <version>${neo4j-ogm.version}</version>
+            <scope>test</scope>
+            <exclusions> <!-- necessary to get logs in tests -->
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-nop</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+    </dependencies>
+
+</project>
