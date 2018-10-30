@@ -88,6 +88,7 @@
         <module>sdn-4.1</module>
         <module>sdn-4.2</module>
         <module>sdn-5.0</module>
+        <module>issue-503</module>
     </modules>
 
 </project>
